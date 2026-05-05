@@ -405,7 +405,36 @@ footer span{color:var(--orange);}
   <p>© 2026 <span>Consortium F</span>. Tous droits réservés.</p>
   <p>Beyond ideas. Building real businesses.</p>
 </footer>
+@media(max-width:640px){
 
+  .hero-content{
+    padding:5rem 1.5rem 0;
+  }
+
+  .hero-h1{
+    font-size:2.4rem;
+    line-height:1.1;
+  }
+
+  nav{
+    flex-wrap:wrap;
+  }
+
+  .geo-visual{
+    grid-template-columns:1fr;
+  }
+
+  .geo-card{
+    height:auto;
+    min-height:220px;
+  }
+
+  .btn-prim, .btn-sec{
+    width:100%;
+    justify-content:center;
+  }
+
+}
 <script>
 setTimeout(function(){document.querySelector('.hero-bg').classList.add('loaded');},100);
 var obs=new IntersectionObserver(function(entries){
