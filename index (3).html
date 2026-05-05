@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consortium F — Beyond ideas. Building real businesses.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1628;--blue:#1A3A6B;--orange:#F47B20;--white:#FFFFFF;--gray:#7A8BA8;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--navy);}
+::-webkit-scrollbar-thumb{background:var(--orange);border-radius:2px;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 5rem;background:rgba(11,22,40,0.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(244,123,32,0.15);}
+.nav-logo img{height:34px;object-fit:contain;}
+.nav-links{display:flex;gap:2.8rem;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.45);text-decoration:none;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;font-family:'Syne',sans-serif;transition:color .2s;}
+.nav-links a:hover{color:var(--orange);}
+.nav-cta{background:transparent;border:1px solid var(--orange);color:var(--orange);padding:.55rem 1.6rem;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;font-family:'Syne',sans-serif;text-decoration:none;transition:background .2s,color .2s;clip-path:polygon(8px 0%,100% 0%,100% calc(100% - 8px),calc(100% - 8px) 100%,0% 100%,0% 8px);}
+.nav-cta:hover{background:var(--orange);color:var(--white);}
+
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:url('images/hero.jpg') center top/cover no-repeat;filter:brightness(.32) saturate(.7);transform:scale(1.04);transition:transform 8s ease;}
+.hero-bg.loaded{transform:scale(1);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(11,22,40,0.97) 0%,rgba(11,22,40,0.7) 50%,rgba(11,22,40,0.2) 100%),linear-gradient(0deg,rgba(11,22,40,1) 0%,transparent 40%);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(244,123,32,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(244,123,32,0.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black,transparent);}
+.hero-scan{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(244,123,32,0.6),transparent);animation:scan 4s linear infinite;top:0;}
+@keyframes scan{0%{top:0;opacity:0;}10%{opacity:1;}90%{opacity:1;}100%{top:100%;opacity:0;}}
+.hero-content{position:relative;z-index:2;padding:6rem 5rem 0;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.7rem;font-family:'Syne',sans-serif;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);font-weight:600;margin-bottom:2rem;}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--orange);}
+.hero-h1{font-family:'Syne',sans-serif;font-size:clamp(3.4rem,6vw,7rem);font-weight:800;line-height:.95;letter-spacing:-.03em;color:var(--white);margin-bottom:.8rem;max-width:860px;}
+.hero-h1 .accent{color:transparent;-webkit-text-stroke:1.5px var(--orange);display:block;}
+.hero-sub-line{font-size:clamp(.95rem,1.4vw,1.15rem);color:var(--orange);font-weight:400;font-style:italic;margin-bottom:1.6rem;}
+.hero-desc{font-size:.95rem;color:rgba(255,255,255,.5);line-height:1.75;max-width:500px;margin-bottom:3rem;font-weight:300;}
+.hero-desc strong{color:rgba(255,255,255,.8);font-weight:500;}
+.hero-actions{display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap;}
+.btn-prim{background:var(--orange);color:var(--white);padding:.85rem 2.2rem;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;font-family:'Syne',sans-serif;text-decoration:none;clip-path:polygon(10px 0%,100% 0%,100% calc(100% - 10px),calc(100% - 10px) 100%,0% 100%,0% 10px);transition:opacity .2s,transform .2s;box-shadow:0 0 30px rgba(244,123,32,.35);}
+.btn-prim:hover{opacity:.88;transform:translateY(-2px);}
+.btn-sec{color:rgba(255,255,255,.6);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;font-family:'Syne',sans-serif;text-decoration:none;display:flex;align-items:center;gap:.5rem;transition:color .2s;}
+.btn-sec:hover{color:var(--orange);}
+.btn-sec::after{content:'→';transition:transform .2s;}
+.btn-sec:hover::after{transform:translateX(4px);}
+.hero-mission{margin-top:4rem;padding:1.6rem 2rem;border-left:2px solid var(--orange);background:rgba(244,123,32,0.06);max-width:520px;}
+.hm-label{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);font-family:'Syne',sans-serif;font-weight:600;margin-bottom:.5rem;}
+.hm-text{font-size:.9rem;color:rgba(255,255,255,.65);line-height:1.7;font-style:italic;}
+.hm-text em{color:var(--orange);font-style:normal;font-weight:500;}
+
+.geo-banner{background:rgba(244,123,32,0.08);border-top:1px solid rgba(244,123,32,0.2);border-bottom:1px solid rgba(244,123,32,0.2);padding:.9rem 5rem;display:flex;align-items:center;gap:3rem;}
+.geo-banner-label{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);font-family:'Syne',sans-serif;}
+.geo-items{display:flex;gap:2.5rem;}
+.geo-item{display:flex;align-items:center;gap:.55rem;}
+.geo-dot{width:5px;height:5px;border-radius:50%;background:var(--orange);box-shadow:0 0 6px var(--orange);}
+.geo-name{font-size:.8rem;color:rgba(255,255,255,.7);font-family:'Syne',sans-serif;font-weight:500;}
+
+section{padding:7rem 5rem;}
+.s-inner{max-width:1160px;margin:0 auto;}
+.s-tag{display:inline-flex;align-items:center;gap:.6rem;font-family:'Syne',sans-serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);font-weight:600;margin-bottom:1rem;}
+.s-tag::before{content:'';width:20px;height:1px;background:var(--orange);}
+.s-title{font-family:'Syne',sans-serif;font-size:clamp(2rem,3.5vw,3.2rem);font-weight:800;line-height:1.05;margin-bottom:1rem;}
+.s-sub{font-size:.95rem;color:rgba(255,255,255,.45);max-width:520px;line-height:1.75;margin-bottom:3.5rem;font-weight:300;}
+
+.position{background:var(--navy);position:relative;overflow:hidden;}
+.position::before{content:'';position:absolute;right:-200px;top:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(244,123,32,.07) 0%,transparent 70%);pointer-events:none;}
+.pos-banner{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:4rem;border:1px solid rgba(244,123,32,.2);overflow:hidden;}
+.pos-banner-main{padding:3rem;background:rgba(26,58,107,.15);border-right:1px solid rgba(244,123,32,.15);}
+.pbm-tag{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);font-family:'Syne',sans-serif;font-weight:600;margin-bottom:.8rem;}
+.pbm-title{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--white);line-height:1.25;margin-bottom:1rem;}
+.pbm-desc{font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7;font-weight:300;}
+.pos-banner-specs{padding:2.5rem 3rem;display:flex;flex-direction:column;justify-content:center;gap:1.2rem;}
+.spec-item{display:flex;align-items:flex-start;gap:1rem;}
+.spec-bar{width:2px;min-height:36px;background:var(--orange);flex-shrink:0;}
+.spec-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);font-family:'Syne',sans-serif;margin-bottom:.2rem;}
+.spec-val{font-size:.9rem;color:rgba(255,255,255,.8);font-weight:500;}
+.pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+.pillar{padding:2.5rem;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);transition:border-color .3s,background .3s,transform .25s;}
+.pillar::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.pillar:hover{border-color:rgba(244,123,32,.3);background:rgba(244,123,32,.04);transform:translateY(-3px);}
+.pillar:hover::after{transform:scaleX(1);}
+.pillar-title{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:.6rem;}
+.pillar-desc{font-size:.84rem;color:rgba(255,255,255,.45);line-height:1.7;font-weight:300;}
+
+.offers{background:#080F1E;position:relative;}
+.offers::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(244,123,32,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(244,123,32,0.03) 1px,transparent 1px);background-size:40px 40px;}
+.offers .s-inner{position:relative;z-index:1;}
+.offers-intro{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-bottom:4rem;}
+.offers-visual{position:relative;height:320px;overflow:hidden;}
+.ov-img{position:absolute;inset:0;background:url('images/offer.jpg') center/cover no-repeat;filter:brightness(.5) saturate(.7);}
+.ov-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(11,22,40,.9) 0%,rgba(11,22,40,.3) 100%);}
+.ov-content{position:absolute;inset:0;padding:2.5rem;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid rgba(244,123,32,.2);}
+.ov-label{font-family:'Syne',sans-serif;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:.5rem;}
+.ov-title{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--white);line-height:1.1;}
+.offers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.06);}
+.offer-card{background:#080F1E;padding:0;position:relative;overflow:hidden;transition:background .2s;}
+.offer-card-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.18) saturate(.5);transition:filter .4s;}
+.offer-card:hover .offer-card-bg{filter:brightness(.28) saturate(.7);}
+.offer-card-content{position:relative;z-index:1;padding:2.5rem 2rem;}
+.offer-card::before{content:attr(data-num);position:absolute;top:1.5rem;right:1.5rem;font-family:'Syne',sans-serif;font-size:4rem;font-weight:800;color:rgba(255,255,255,.05);line-height:1;z-index:1;}
+.oc-tag{display:inline-block;font-family:'Syne',sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);font-weight:700;margin-bottom:.9rem;padding:.2rem .7rem;border:1px solid rgba(244,123,32,.3);}
+.oc-name{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;color:var(--white);margin-bottom:.6rem;line-height:1.2;}
+.oc-goal{font-size:.82rem;color:var(--gray);margin-bottom:1.4rem;line-height:1.6;font-style:italic;}
+.oc-items{list-style:none;}
+.oc-items li{font-size:.82rem;color:rgba(255,255,255,.55);padding:.3rem 0;display:flex;align-items:flex-start;gap:.6rem;border-bottom:1px solid rgba(255,255,255,.04);}
+.oc-items li:last-child{border:none;}
+.oc-items li::before{content:'—';color:var(--orange);flex-shrink:0;font-size:.75rem;margin-top:.05rem;}
+.oc-deliverable{margin-top:1.5rem;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);font-family:'Syne',sans-serif;font-weight:600;display:flex;align-items:center;gap:.4rem;}
+.oc-deliverable::before{content:'↳';font-size:1rem;}
+
+.geo-section{background:var(--navy);position:relative;overflow:hidden;}
+.geo-section::before{content:'';position:absolute;left:-100px;bottom:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(26,58,107,.4) 0%,transparent 70%);}
+.geo-visual{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;position:relative;z-index:1;}
+.geo-card{position:relative;overflow:hidden;height:280px;border:1px solid rgba(255,255,255,.07);transition:border-color .3s;}
+.geo-card:hover{border-color:rgba(244,123,32,.4);}
+.gc-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.3) saturate(.5);transition:filter .4s;}
+.geo-card:hover .gc-bg{filter:brightness(.4) saturate(.7);}
+.gc-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(11,22,40,.9) 30%,transparent 100%);}
+.gc-content{position:absolute;inset:0;padding:2.2rem;display:flex;flex-direction:column;justify-content:flex-end;}
+.gc-country{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--white);margin-bottom:.2rem;}
+.gc-role{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);font-family:'Syne',sans-serif;font-weight:600;}
+
+.contact-section{background:#080F1E;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;}
+.contact-section::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(244,123,32,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(244,123,32,0.035) 1px,transparent 1px);background-size:50px 50px;}
+.cs-left{padding:7rem 4rem 7rem 5rem;position:relative;z-index:1;border-right:1px solid rgba(244,123,32,.12);display:flex;flex-direction:column;justify-content:center;}
+.cs-logo img{height:44px;margin-bottom:2.5rem;}
+.cs-name{font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:var(--white);letter-spacing:-.02em;margin-bottom:.4rem;}
+.cs-tagline{font-family:'Syne',sans-serif;font-size:1rem;font-weight:600;color:var(--orange);margin-bottom:.4rem;}
+.cs-slogan{font-size:.82rem;color:var(--gray);}
+.cs-separator{width:40px;height:1px;background:var(--orange);margin:2rem 0;}
+.cs-mission-txt{font-size:.85rem;color:rgba(255,255,255,.4);line-height:1.75;font-style:italic;font-weight:300;}
+.cs-right{padding:7rem 5rem 7rem 4rem;position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;}
+.cs-heading{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:var(--white);margin-bottom:2.5rem;}
+.cs-list{list-style:none;margin-bottom:3rem;}
+.cs-list li{display:flex;align-items:center;gap:1rem;padding:.8rem 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.88rem;color:rgba(255,255,255,.65);}
+.cs-list a{color:inherit;text-decoration:none;transition:color .2s;}
+.cs-list a:hover{color:var(--orange);}
+.cs-icon{width:32px;height:32px;border-radius:2px;background:rgba(244,123,32,.1);border:1px solid rgba(244,123,32,.2);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;}
+.cs-btn{display:inline-flex;align-items:center;gap:.8rem;background:var(--orange);color:var(--white);padding:1rem 2.2rem;text-decoration:none;font-family:'Syne',sans-serif;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;clip-path:polygon(10px 0%,100% 0%,100% calc(100% - 10px),calc(100% - 10px) 100%,0% 100%,0% 10px);transition:opacity .2s,box-shadow .2s;box-shadow:0 0 30px rgba(244,123,32,.3);}
+.cs-btn:hover{opacity:.9;box-shadow:0 0 50px rgba(244,123,32,.5);}
+.cs-btn::after{content:'→';}
+
+footer{background:#040B14;padding:1.4rem 5rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.04);}
+footer p{font-size:.7rem;color:rgba(255,255,255,.2);}
+footer span{color:var(--orange);}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.in{opacity:1;transform:none;}
+.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity .65s ease,transform .65s ease;}
+.reveal-left.in{opacity:1;transform:none;}
+.reveal-right{opacity:0;transform:translateX(28px);transition:opacity .65s ease,transform .65s ease;}
+.reveal-right.in{opacity:1;transform:none;}
+
+@media(max-width:1024px){
+  section{padding:5rem 2.5rem;}
+  nav{padding:1rem 2rem;}
+  .pos-banner,.pillars,.offers-intro,.offers-grid,.geo-visual,.contact-section{grid-template-columns:1fr;}
+  .cs-left,.cs-right{padding:4rem 2.5rem;}
+  .hero-content{padding:5rem 2.5rem 0;}
+  .geo-banner{padding:.9rem 2.5rem;flex-wrap:wrap;gap:1rem;}
+  footer{padding:1.4rem 2.5rem;flex-direction:column;gap:.4rem;text-align:center;}
+}
+@media(max-width:640px){
+  .nav-links{display:none;}
+  nav{padding:1rem 1.5rem;}
+  .hero-h1{font-size:3rem;}
+  .geo-items{flex-wrap:wrap;gap:1rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><img src="images/logo.png" alt="Consortium F"></div>
+  <ul class="nav-links">
+    <li><a href="#position">Approche</a></li>
+    <li><a href="#offers">Offres</a></li>
+    <li><a href="#geo">Zones</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Nous contacter</a>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-scan"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow reveal">Consortium F</div>
+    <h1 class="hero-h1 reveal">
+      Beyond ideas.
+      <span class="accent">Building real</span>
+      businesses.
+    </h1>
+    <p class="hero-sub-line reveal">We turn tech ideas into working businesses.</p>
+    <p class="hero-desc reveal">
+      Nous accompagnons les <strong>fondateurs de startups et PME tech early-stage</strong>
+      dans la transformation de leurs idées en entreprises concrètes,
+      génératrices de revenus durables.
+    </p>
+    <div class="hero-actions reveal">
+      <a href="#offers" class="btn-prim">Découvrir nos offres</a>
+      <a href="#contact" class="btn-sec">Prendre contact</a>
+    </div>
+    <div class="hero-mission reveal">
+      <div class="hm-label">Notre mission</div>
+      <div class="hm-text">
+        Faire en sorte que chaque bonne idée réponde <em>enfin</em> à un réel besoin
+        et crée un véritable <em>impact</em> dans la société.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="geo-banner">
+  <span class="geo-banner-label">Zones d'intervention</span>
+  <div class="geo-items">
+    <div class="geo-item"><div class="geo-dot"></div><span class="geo-name">Côte d'Ivoire</span></div>
+    <div class="geo-item"><div class="geo-dot"></div><span class="geo-name">Madagascar</span></div>
+  </div>
+</div>
+
+<section class="position" id="position">
+  <div class="s-inner">
+    <div class="s-tag reveal">Notre approche</div>
+    <h2 class="s-title reveal">Un cabinet qui combine<br>stratégie et appui à l'exécution</h2>
+    <p class="s-sub reveal">
+      Nous n'arrêtons pas au conseil. Nous travaillons aux côtés des fondateurs
+      jusqu'à l'obtention de résultats concrets et mesurables.
+    </p>
+    <div class="pos-banner reveal">
+      <div class="pos-banner-main">
+        <div class="pbm-tag">Positionnement</div>
+        <div class="pbm-title">Cabinet hybride de structuration<br>et de développement business</div>
+        <div class="pbm-desc">
+          Spécialisé dans l'accompagnement des startups et PME tech en phase early-stage —
+          de la structuration du modèle économique jusqu'à la génération des premiers revenus.
+        </div>
+      </div>
+      <div class="pos-banner-specs">
+        <div class="spec-item">
+          <div class="spec-bar"></div>
+          <div>
+            <div class="spec-label">Cible principale</div>
+            <div class="spec-val">Startups & PME tech early-stage (0–3 ans)</div>
+          </div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-bar"></div>
+          <div>
+            <div class="spec-label">Focus</div>
+            <div class="spec-val">80% tech & digital · 20% TPME à fort potentiel</div>
+          </div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-bar"></div>
+          <div>
+            <div class="spec-label">Différenciation</div>
+            <div class="spec-val">Stratégie + Exécution + Résultats mesurables</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pillars">
+      <div class="pillar reveal">
+        <div class="pillar-title">Structuration stratégique</div>
+        <div class="pillar-desc">
+          Clarification du modèle économique, du positionnement marché et des priorités d'action.
+          Nous partons de l'existant et identifions précisément ce qui bloque la croissance.
+        </div>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-title">Appui à l'exécution</div>
+        <div class="pillar-desc">
+          Go-to-market concret, prospection des premiers clients, structuration de l'offre commerciale.
+          Nous co-exécutons avec le fondateur — pas uniquement en conseil.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="offers" id="offers">
+  <div class="s-inner">
+    <div class="offers-intro">
+      <div>
+        <div class="s-tag reveal">Nos offres</div>
+        <h2 class="s-title reveal">Des modules conçus<br>pour l'early-stage tech</h2>
+        <p class="s-sub reveal" style="margin-bottom:0">
+          Chaque module répond à une phase précise du développement d'une startup.
+          De la première structuration jusqu'à la génération de revenus.
+        </p>
+      </div>
+      <div class="offers-visual reveal-right">
+        <div class="ov-img"></div>
+        <div class="ov-overlay"></div>
+        <div class="ov-content">
+          <div class="ov-label">Notre promesse</div>
+          <div class="ov-title">De l'idée au<br>premier client.</div>
+        </div>
+      </div>
+    </div>
+    <div class="offers-grid">
+      <div class="offer-card reveal" data-num="01">
+        <div class="offer-card-bg" style="background-image:url('images/mod1.jpg')"></div>
+        <div class="offer-card-content">
+          <div class="oc-tag">Module 01</div>
+          <div class="oc-name">Module Business</div>
+          <div class="oc-goal">Donner au fondateur les bases pour piloter son activité.</div>
+          <ul class="oc-items">
+            <li>Fondamentaux du business model</li>
+            <li>Compréhension du marché cible</li>
+            <li>Bases du go-to-market</li>
+          </ul>
+          <div class="oc-deliverable">Sessions interactives</div>
+        </div>
+      </div>
+      <div class="offer-card reveal" data-num="02">
+        <div class="offer-card-bg" style="background-image:url('images/mod2.jpg')"></div>
+        <div class="offer-card-content">
+          <div class="oc-tag">Module 02</div>
+          <div class="oc-name">Diagnostic & Structuration</div>
+          <div class="oc-goal">Analyser et poser des bases solides pour la croissance.</div>
+          <ul class="oc-items">
+            <li>Analyse du modèle actuel</li>
+            <li>Identification des leviers de croissance</li>
+            <li>Structuration du modèle économique</li>
+          </ul>
+          <div class="oc-deliverable">Diagnostic + Plan d'action priorisé</div>
+        </div>
+      </div>
+      <div class="offer-card reveal" data-num="03">
+        <div class="offer-card-bg" style="background-image:url('images/mod3.jpg')"></div>
+        <div class="offer-card-content">
+          <div class="oc-tag">Module 03</div>
+          <div class="oc-name">Growth & Développement</div>
+          <div class="oc-goal">Générer les premières dynamiques de revenus réels.</div>
+          <ul class="oc-items">
+            <li>Stratégie go-to-market complète</li>
+            <li>Structuration de l'offre commerciale</li>
+            <li>Accompagnement à la prospection</li>
+          </ul>
+          <div class="oc-deliverable">Plan d'exécution + Outils commerciaux</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="geo-section" id="geo">
+  <div class="s-inner">
+    <div class="s-tag reveal">Présence</div>
+    <h2 class="s-title reveal">Deux marchés.<br>Un engagement terrain.</h2>
+    <p class="s-sub reveal">
+      Opérant au plus proche des écosystèmes locaux,
+      nous intervenons là où les fondateurs ont besoin d'un appui concret.
+    </p>
+    <div class="geo-visual">
+      <div class="geo-card reveal-left">
+        <div class="gc-bg" style="background-image:url('images/geo1.jpg')"></div>
+        <div class="gc-overlay"></div>
+        <div class="gc-content">
+          <div class="gc-country">Côte d'Ivoire</div>
+          <div class="gc-role">Marché principal · Abidjan</div>
+        </div>
+      </div>
+      <div class="geo-card reveal-right">
+        <div class="gc-bg" style="background-image:url('images/geo2.jpg')"></div>
+        <div class="gc-overlay"></div>
+        <div class="gc-content">
+          <div class="gc-country">Madagascar</div>
+          <div class="gc-role">Second marché · Antananarivo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="cs-left">
+    <div class="cs-logo reveal"><img src="images/logo.png" alt="Consortium F"></div>
+    <div class="cs-name reveal">CONSORTIUM F.</div>
+    <div class="cs-tagline reveal">Beyond ideas. Building real businesses.</div>
+    <div class="cs-slogan reveal">We turn tech ideas into working businesses.</div>
+    <div class="cs-separator reveal"></div>
+    <div class="cs-mission-txt reveal">
+      Faire en sorte que chaque bonne idée réponde enfin à un réel besoin
+      et crée un véritable impact dans la société.
+    </div>
+  </div>
+  <div class="cs-right">
+    <div class="cs-heading reveal">Travaillons<br>ensemble.</div>
+    <ul class="cs-list reveal">
+      <li><div class="cs-icon">📍</div> Abidjan, Côte d'Ivoire</li>
+      <li><div class="cs-icon">📍</div> Antananarivo, Madagascar</li>
+      <li><div class="cs-icon">📞</div> <a href="tel:+2250702929261">+225 07 02 92 92 61</a></li>
+      <li><div class="cs-icon">📞</div> <a href="tel:+2610383128932">+261 03 83 12 89 32</a></li>
+      <li><div class="cs-icon">📧</div> <a href="mailto:contact@consortiumf.com">contact@consortiumf.com</a></li>
+    </ul>
+    <a href="mailto:contact@consortiumf.com" class="cs-btn reveal">
+      Démarrer votre accompagnement
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 <span>Consortium F</span>. Tous droits réservés.</p>
+  <p>Build. Execute. Scale African ventures.</p>
+</footer>
+
+<script>
+setTimeout(function(){document.querySelector('.hero-bg').classList.add('loaded');},100);
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      setTimeout(function(){e.target.classList.add('in');},(e.target.dataset.d||0)*1);
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(function(el,i){
+  el.dataset.d=(i%5)*90;obs.observe(el);
+});
+</script>
+</body>
+</html>
