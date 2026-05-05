@@ -169,6 +169,39 @@ footer span{color:var(--orange);}
   .hero-h1{font-size:3rem;}
   .geo-items{flex-wrap:wrap;gap:1rem;}
 }
+/* ====== MOBILE FIX SAFE (AJOUT À COLLER ICI) ====== */
+@media (max-width: 1024px) {
+  body { overflow-x: hidden; }
+
+  nav { padding: 1rem 1.5rem; }
+
+  .nav-links { display: none; }
+
+  .hero-content { padding: 5rem 1.5rem 0; }
+
+  .hero-h1 {
+    font-size: clamp(2.2rem, 6vw, 3.2rem);
+    line-height: 1.05;
+  }
+
+  section { padding: 5rem 1.5rem; }
+
+  .pos-banner { display: block; }
+
+  .pillars { grid-template-columns: 1fr; }
+
+  .offers-intro { grid-template-columns: 1fr; }
+
+  .offers-grid { grid-template-columns: 1fr; }
+
+  .geo-visual { grid-template-columns: 1fr; }
+
+  .contact-section { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .hero-h1 { font-size: 2.2rem; }
+}  
 </style>
 </head>
 <body>
@@ -377,7 +410,7 @@ footer span{color:var(--orange);}
 <section class="contact-section" id="contact">
   <div class="cs-left">
     <div class="cs-logo reveal"><img src="logo2_rbg.png" alt="Consortium F"></div>
-    <div class="cs-name reveal">CONSORTIUM F.</div>
+    
     <div class="cs-tagline reveal">Beyond ideas. Building real businesses.</div>
     <div class="cs-slogan reveal">We turn tech ideas into working businesses.</div>
     <div class="cs-separator reveal"></div>
